@@ -9,11 +9,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VlSU-PT3-TP.Core", "src\VlSU-PT3-TP.Core\VlSU-PT3-TP.Core.csproj", "{99EED5C9-85B7-467E-9129-7AE1972CFFD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VlSU-PT3-TP.Core", "src\VlSU-PT3-TP.Core\VlSU-PT3-TP.Core.csproj", "{99EED5C9-85B7-467E-9129-7AE1972CFFD8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Реализация", "Реализация", "{428E6595-8CC6-40D9-AACF-8BA6881DA275}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Тесты", "Тесты", "{4BC21127-A77A-46EB-BF82-817FD4E2672C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VlSU-PT3-TP.Infrastructure", "src\VlSU-PT3-TP.Infrastructure\VlSU-PT3-TP.Infrastructure.csproj", "{49E08BDC-12BD-452B-9DD0-82758117E325}"
+	ProjectSection(ProjectDependencies) = postProject
+		{99EED5C9-85B7-467E-9129-7AE1972CFFD8} = {99EED5C9-85B7-467E-9129-7AE1972CFFD8}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,12 +30,17 @@ Global
 		{99EED5C9-85B7-467E-9129-7AE1972CFFD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99EED5C9-85B7-467E-9129-7AE1972CFFD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99EED5C9-85B7-467E-9129-7AE1972CFFD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49E08BDC-12BD-452B-9DD0-82758117E325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49E08BDC-12BD-452B-9DD0-82758117E325}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49E08BDC-12BD-452B-9DD0-82758117E325}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49E08BDC-12BD-452B-9DD0-82758117E325}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{99EED5C9-85B7-467E-9129-7AE1972CFFD8} = {428E6595-8CC6-40D9-AACF-8BA6881DA275}
+		{49E08BDC-12BD-452B-9DD0-82758117E325} = {428E6595-8CC6-40D9-AACF-8BA6881DA275}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B124AB0-1BB7-4EC1-A0D0-C417F32CD4BB}

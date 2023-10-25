@@ -2,6 +2,9 @@
 
 namespace VlSU_PT3_TP.Core.Entities
 {
+    /**
+     * <summary>Экземпляр или единица расходного материала</summary>
+     */
     public class Consumable
     {
         [Key]

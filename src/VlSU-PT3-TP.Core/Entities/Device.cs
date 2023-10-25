@@ -2,6 +2,9 @@
 
 namespace VlSU_PT3_TP.Core.Entities
 {
+    /**
+     * <summary>Экземпляр технического устройства</summary>
+     */
     public class Device
     {
         [Key]
@@ -18,8 +21,8 @@ namespace VlSU_PT3_TP.Core.Entities
         // идентификатор подразделения
         public uint? DepartmentID { get; set; }
 
-        //[Display(Name = "Подразделение")]
-        //public Department? Department { get; set; }
+        [Display(Name = "Подразделение")]
+        public Department? Department { get; set; }
 
         // Закреплённые расходные материалы
         private ICollection<Consumable>? _attachedConsumables;

@@ -2,6 +2,9 @@
 
 namespace VlSU_PT3_TP.Core.Entities
 {
+    /**
+     * <summary>Категория расходных материалов</summary>
+     */
     public class ConsumableCategory
     {
         [Key]

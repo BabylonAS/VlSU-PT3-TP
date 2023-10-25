@@ -2,6 +2,9 @@
 
 namespace VlSU_PT3_TP.Core.Entities
 {
+    /**
+     * <summary>Разновидность (модель) расходных материалов</summary>
+     */
     public class ConsumableModel
     {
         [Key]

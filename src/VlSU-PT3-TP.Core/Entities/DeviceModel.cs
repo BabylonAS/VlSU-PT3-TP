@@ -2,6 +2,9 @@
 
 namespace VlSU_PT3_TP.Core.Entities
 {
+    /**
+     * <summary>Модель технического устройства</summary>
+     */
     public class DeviceModel
     {
         [Key]
@@ -19,6 +22,9 @@ namespace VlSU_PT3_TP.Core.Entities
         [Required]
         [Display(Name = "Тип")]
         public string Type { get; set; } = string.Empty;
+
+        [Display(Name = "Краткое описание")]
+        public string Description { get; set; } = string.Empty;
 
         // Совместимые модели расходных материалов
         private ICollection<ConsumableModel>? _compatibleConsumables;
