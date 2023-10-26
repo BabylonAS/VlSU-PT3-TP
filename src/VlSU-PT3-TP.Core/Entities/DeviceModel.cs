@@ -13,15 +13,15 @@ namespace VlSU_PT3_TP.Core.Entities
 
         [Required]
         [Display(Name = "Обозначение")]
-        public string Name { get; set; } = string.Empty;
+        public required string Name { get; set; }
 
         [Required]
         [Display(Name = "Производитель")]
-        public string Manufacturer { get; set; } = string.Empty;
+        public required string Manufacturer { get; set; }
 
         [Required]
         [Display(Name = "Тип")]
-        public string Type { get; set; } = string.Empty;
+        public required string Type { get; set; }
 
         [Display(Name = "Краткое описание")]
         public string Description { get; set; } = string.Empty;

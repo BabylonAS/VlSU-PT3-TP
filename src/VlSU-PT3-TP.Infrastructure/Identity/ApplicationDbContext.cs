@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace VlSU_PT3_TP.Infrastructure.Identity
 {
     /**
-     * <summary>Контект данных для хранения данных о пользователях программной системы</summary>
+     * <summary>Контект данных для подсистемы идентификации пользователей</summary>
      */
     public class ApplicationDbContext: IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
