@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VlSU-PT3-TP.Infrastructure"
 		{99EED5C9-85B7-467E-9129-7AE1972CFFD8} = {99EED5C9-85B7-467E-9129-7AE1972CFFD8}
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VlSU-PT3-TP.Web", "src\VlSU-PT3-TP.Web\VlSU-PT3-TP.Web.csproj", "{EAE0A90A-2699-4B0A-8C61-4509B6E5914C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{49E08BDC-12BD-452B-9DD0-82758117E325}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49E08BDC-12BD-452B-9DD0-82758117E325}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49E08BDC-12BD-452B-9DD0-82758117E325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAE0A90A-2699-4B0A-8C61-4509B6E5914C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAE0A90A-2699-4B0A-8C61-4509B6E5914C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAE0A90A-2699-4B0A-8C61-4509B6E5914C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAE0A90A-2699-4B0A-8C61-4509B6E5914C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{99EED5C9-85B7-467E-9129-7AE1972CFFD8} = {428E6595-8CC6-40D9-AACF-8BA6881DA275}
 		{49E08BDC-12BD-452B-9DD0-82758117E325} = {428E6595-8CC6-40D9-AACF-8BA6881DA275}
+		{EAE0A90A-2699-4B0A-8C61-4509B6E5914C} = {428E6595-8CC6-40D9-AACF-8BA6881DA275}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B124AB0-1BB7-4EC1-A0D0-C417F32CD4BB}

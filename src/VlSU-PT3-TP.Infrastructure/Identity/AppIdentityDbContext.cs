@@ -7,8 +7,8 @@ namespace VlSU_PT3_TP.Infrastructure.Identity
     /**
      * <summary>Контект данных для подсистемы идентификации пользователей</summary>
      */
-    public class ApplicationDbContext: IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
+    public class AppIdentityDbContext: IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options) { }
+        public AppIdentityDbContext(DbContextOptions<AppIdentityDbContext> options): base(options) { }
     }
 }
