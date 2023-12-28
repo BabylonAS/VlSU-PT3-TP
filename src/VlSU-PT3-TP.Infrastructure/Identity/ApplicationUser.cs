@@ -34,5 +34,19 @@ namespace VlSU_PT3_TP.Infrastructure.Identity
                 return fname;
             }
         }
+
+        /**
+         * <summary>Сокращённое имя в формате «Фамилия И. [О.]» </summary>
+         */
+        public string ShortName
+        {
+            get
+            {
+                string sname = $"{LastName} {FirstName[0]}.";
+                if (MidName != string.Empty)
+                    sname += ' ' + MidName[0] + '.';
+                return sname;
+            }
+        }
     }
 }

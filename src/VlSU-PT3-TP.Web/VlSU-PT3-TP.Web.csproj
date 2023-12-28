@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\lib\" />
+    <Folder Include="Areas\" />
   </ItemGroup>
 
 </Project>

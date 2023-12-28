@@ -9,19 +9,18 @@ using VlSU_PT3_TP.Infrastructure.Identity;
 // Сборщик веб-приложения
 var builder = WebApplication.CreateBuilder(args);
 
-// Добавление поддержки баз данных Microsoft SQL Server
-builder.Services.AddDbContext<AppIdentityDbContext>(options =>
-{
-    var connectionString = builder.Configuration["VLSU_PT3_TP_IDENTITY_DB_CONNECTION_STRING"] ?? "";
-    options.UseSqlServer(connectionString);
-});
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    var connectionString = builder.Configuration["VLSU_PT3_TP_MAIN_DB_CONNECTION_STRING"] ?? "";
-    options.UseSqlServer(connectionString);
-});
+// Ведение журнала в консоли
+builder.Logging.AddConsole();
 
-// Добавление поддержки ASP.NET Core Identity
+// Добавление поддержки баз данных Microsoft SQL Server
+builder.Services.AddDbContext<AppIdentityDbContext>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("Identity") ?? "")
+);
+builder.Services.AddDbContext<ApplicationDbContext>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("Main") ?? "")
+);
+
+// Добавление поддержки системы удостоверения пользователей ASP.NET Core Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppIdentityDbContext>()
     .AddDefaultTokenProviders();
@@ -36,35 +35,62 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 // Собрать приложение
 var app = builder.Build();
 
-// Инициализировать базу данных
+// Инициализировать базы данных и роли пользователей
 using (var scope = app.Services.CreateScope())
 {
+    // Поставщик служб
     var services = scope.ServiceProvider;
+
+    // Журнальная служба
+    var logger = services.GetRequiredService<ILogger<Program>>();
 
     try
     {
+        // Удостоверяемся, что базы данных созданы
         var identityContext = services.GetRequiredService<AppIdentityDbContext>();
-        identityContext.Database.EnsureCreated();
-
+        if (identityContext.Database.EnsureCreated())
+            logger.LogInformation("Создана БД учётных записей");
         var context = services.GetRequiredService<ApplicationDbContext>();
-        context.Database.EnsureCreated();
+        if (context.Database.EnsureCreated())
+            logger.LogInformation("Создана основная БД");
+
+        // Удостоверяемся, что роли созданы, с использованием вспомогательной функции
+        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+        var adminRoleTask = EnsureRoleAddedAsync(roleManager, "Администратор", logger);
+        var depManagerRoleTask = EnsureRoleAddedAsync(roleManager, "Начальник подразделения", logger);
+        var accountantRoleTask = EnsureRoleAddedAsync(roleManager, "Учётчик", logger);
+        Task.WaitAll(adminRoleTask, depManagerRoleTask, accountantRoleTask);
     }
     catch (Exception ex)
     {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "Не удалось создать базы данных для первого использования! {exceptionMessage}", ex.Message);
+        logger.LogError(ex, "Ошибка на этапе инициализации данных! {exceptionMessage}", ex.Message);
     }
+
 }
 
 // Перенаправление с обычного HTTP на HTTPS
 app.UseHttpsRedirection();
 
-// Применить параметры аутентификации и авторизации
+app.UseRouting();
+
+// Применить параметры куки, аутентификации и авторизации
 app.UseCookiePolicy();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapGet("/", () => "Coming soon");
-
 // Запуск приложения
 app.Run();
+
+// Вспомогательная функция для добавления роли
+static async Task EnsureRoleAddedAsync(RoleManager<IdentityRole> roleManager, string roleName, ILogger logger)
+{
+    if (!await roleManager.RoleExistsAsync(roleName))
+    {
+        var result = await roleManager.CreateAsync(new IdentityRole(roleName));
+        if (result.Succeeded)
+            logger.LogInformation("Создана роль «{RoleName}»", roleName);
+        else
+            logger.LogError("Не удалось создать роль «{RoleName}»: {identityErrors}", roleName, string.Join(", ", result.Errors));
+    }
+}

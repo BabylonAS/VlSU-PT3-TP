@@ -11,30 +11,20 @@
 <body>
     <div class="app-wrapper">
         <header class="app-header">
-            <div class="container">
-                <article class="row">
-                    <section class="col-lg-7 col-md-6 col-xs-12">
-                        <a asp-area="" asp-page="/Index" class="fw-bold">
-                            Главная страница
-                        </a>
-                    </section>
-                </article>
-            </div>
+            <nav class="navbar navbar-expand-lg bg-dark border-bottom" data-bs-theme="dark">
+                <div class="container-fluid">
+                    <!-- блок ссылок, зависящих от пользователя -->
+                    <partial name="_NavbarPartial" />
+                </div>
+            </nav>
         </header>
         @RenderBody()
-        <footer class="app-footer">
-            <div class="container">
-                <article class="row">
-                    <section class="col-sm-6"></section>
-                    <section class="col-sm-6">
-                        <div class="app-footer-text hidden-xs">© Никита Наиста, 2023</div>
-                    </section>
-                </article>
-            </div>
+        <footer class="app-footer py-3 bg-body-tertiary border-top">
+            <div class="text-center">Приложение работает на технологии <a href="https://github.com/BabylonAS/VlSU-PT3-TP">VlSU-PT3-TP</a></div>
         </footer>
     </div>
     @* сценарии Bootstrap *@
-    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
     @* сценарии jQuery *@
     <script src="~/lib/jquery/jquery.js"></script>
     @* локальные сценарии *@
