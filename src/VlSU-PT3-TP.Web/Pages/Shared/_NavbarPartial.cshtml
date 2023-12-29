@@ -1,37 +1,64 @@
 ﻿@* _NavbarPartial.cshtml: Добавляет ссылки в навигационную панель в зависимости от пользователя *@
 
 @* Инъекция функциональной зависимости для частичного представления *@
+@*
 @using Microsoft.AspNetCore.Identity
 @using VlSU_PT3_TP.Infrastructure.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+*@
 
-@if (SignInManager.IsSignedIn(User))
-{
+@* @if (SignInManager.IsSignedIn(User))
+{ *@
     @* Для зарегистрированных пользователей *@
 
     @* Блок фунциональных ссылок *@
-    <ul class="navbox-nav me-auto">
-
+    <ul class="navbar-nav me-auto">
+        @* Начальник подразделения *@
+        <li class="nav-item">
+            <a class="nav-link" href="index.html">В начало</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Подразделение</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="departmentcontrol.html">Управление подразделением</a></li>
+                <li><a class="dropdown-item" href="departmentdevices.html">Эксплуатируемые устройства</a></li>
+                <li><a class="dropdown-item" href="departmentconsumables.html">Закреплённые материалы</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Справочники</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="devices.html">Технические устройства</a></li>
+                <li><a class="dropdown-item" href="consumables.html">Расходные материалы</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Запросы</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="requestsubmit.html">Новый запрос...</a></li>
+                <li><a class="dropdown-item" href="currentrequests.html">Текущие запросы</a></li>
+                <li><a class="dropdown-item" href="pastrequests.html">Предыдущие запросы</a></li>
+            </ul>
+        </li>
     </ul>
-
     @* Блок управления пользователем *@
-    <ul class="navbox-nav">
+    <ul class="navbar-nav">
         <li class="nav-item">
             @* Профиль пользователя *@
-            <a class="nav-link" asp-area="Identity" asp-page="/UserProfile">@((await UserManager.GetUserAsync(User))!.ShortName)</a>
+            <a class="nav-link" asp-area="Identity" asp-page="Account/Manage">Селезнёва А. И.@* @((await UserManager.GetUserAsync(User))!.ShortName)*@</a>
         </li>
         <li class="nav-item">
             @* Выход из учётной записи *@
-            <a class="nav-link" asp-area="Identity" asp-page="/UserLogout">Выйти</a>
+            <a class="nav-link" asp-area="Identity" asp-page="Account/Logout">Выйти</a>
         </li>
     </ul>
-} else
-{
-    @* Для незарегистрированных пользователей *@
+@* } else
+{ *@
+    @* Для незарегистрированных пользователей *@ @*
     <ul class="navbox-nav">
         <li class="nav-item">
             <a class="nav-link" asp-area="Identity" asp-page="/UserLogin">Войти...</a>
         </li>
     </ul>
-}
+} *@

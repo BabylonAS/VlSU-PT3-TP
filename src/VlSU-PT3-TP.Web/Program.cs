@@ -21,9 +21,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 );
 
 // Добавление поддержки системы удостоверения пользователей ASP.NET Core Identity
+/*
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppIdentityDbContext>()
     .AddDefaultTokenProviders();
+*/
 
 // Настройки куки
 builder.Services.Configure<CookiePolicyOptions>(options =>
@@ -31,6 +33,8 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.CheckConsentNeeded = context => true; // нужно согласие
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
+
+builder.Services.AddRazorPages();
 
 // Собрать приложение
 var app = builder.Build();
@@ -54,6 +58,7 @@ using (var scope = app.Services.CreateScope())
         if (context.Database.EnsureCreated())
             logger.LogInformation("Создана основная БД");
 
+        /*
         // Удостоверяемся, что роли созданы, с использованием вспомогательной функции
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
@@ -61,6 +66,7 @@ using (var scope = app.Services.CreateScope())
         var depManagerRoleTask = EnsureRoleAddedAsync(roleManager, "Начальник подразделения", logger);
         var accountantRoleTask = EnsureRoleAddedAsync(roleManager, "Учётчик", logger);
         Task.WaitAll(adminRoleTask, depManagerRoleTask, accountantRoleTask);
+        */
     }
     catch (Exception ex)
     {
@@ -71,13 +77,16 @@ using (var scope = app.Services.CreateScope())
 
 // Перенаправление с обычного HTTP на HTTPS
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 
 app.UseRouting();
 
 // Применить параметры куки, аутентификации и авторизации
 app.UseCookiePolicy();
-app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthentication();
+//app.UseAuthorization();
+
+app.MapRazorPages();
 
 // Запуск приложения
 app.Run();
